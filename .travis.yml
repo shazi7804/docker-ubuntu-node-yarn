@@ -1,15 +1,16 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 env:
-  global :
-    - REPOSITORY: shazi7804/ubuntu-node-yarn
-  matrix :
-    - NODE_VERSION: '4.8'
-    - NODE_VERSION: '6.10'
-    - NODE_VERSION: '7.10'
-
+  global:
+  - REPOSITORY: shazi7804/ubuntu-node-yarn
+  matrix:
+  - NODE_VERSION: '4.8'
+  - NODE_VERSION: '6.10'
+  - NODE_VERSION: '7.10'
 script:
-  - docker build -t ${REPOSITORY}:${NODE_VERSION} ${NODE_VERSION}/.
+- docker build -t ${REPOSITORY}:${NODE_VERSION} ${NODE_VERSION}/.
+notifications:
+  email: false
+  slack:
+    secure: 5mgrA3hInrn3CGdvg1HuItcL27niO4dWswLMZ/1x2fYUea1Z8OyweAuL8mKeuepLUVsvLbll3fXePE477OXJ9TNdxq28bVmv5FaN51Hhdx0WEEcoHlbWeFbG7SRk0ejMb+D3gohIIOGZFzyhFi4s0pG6+IkhEIZCOO9jZa5ZuKZ0arY99jIkXTo9bVi41RNX40cIMfjv0NhrQoMlzxcSRVGRNBx/tWDthaTK/lAnvlIkb2vbQHinUcrvDv6fC5btQ2Uchx/ZLDvFi6s6BZpB+YNzjeq6qyNYqLAUaRvRcBBZkT30nb6ise7xtiFgOvQL4fcVRYVQO2m2GID33mtJ334VP1Og8XgCOslg8vgo1Un32M0mP3Ot7ymuZQlEpn/W2NbXbjMVruZCmeTVzCS7P40jG8CkCbnKl+IMDt70qyqsp2AaQVlpJc8Apz/nFQHXmVSBraCCLiqON1beC6G38N+md8jMaQsyu98SNPiN3HU97WO3D9bqdKMlE0m7rO3G3TdM9E3DIHqNUK9YEMNUn469pWToiSMiWE+hugtR6vIXyrdZzVDuZimVwnOmtAVOEW6rdc9kGcxrgnDTvuervHBskNsF1T6GjLJNc1ZSkSGsXyZoNDlPvpa/QBCs0gfImLB8KT42aW3rb2WbJ+4ZqopAyVjB+Zqiy0ugoPrnw40=
