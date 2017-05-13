@@ -18,9 +18,9 @@ script:
 after_success:
   - docker images
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker tag $REPO $REPO:$TAG
+      docker tag $REPO ${REPO}:${TAG}
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      docker push $REPOSITORY;
+      docker push $REPO
     fi
 
 notifications:
