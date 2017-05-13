@@ -12,4 +12,4 @@ env:
     - NODE_VERSION: '7.10'
 
 script:
-  - docker build -t ${REPOSITORY}:${NODE_VERSION}
+  - docker build -t ${REPOSITORY}:${NODE_VERSION} .

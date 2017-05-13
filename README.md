@@ -7,6 +7,5 @@
   - 7.10
 
 # How to get images
---------
-$ docker pull shazi7804/ubuntu-node-yarn
---------
+
+    $ docker pull shazi7804/ubuntu-node-yarn
