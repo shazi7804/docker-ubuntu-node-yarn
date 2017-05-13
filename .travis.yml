@@ -20,7 +20,7 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker tag $REPO ${REPO}:${TAG}
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      docker push $REPO
+      docker push $REPO;
     fi
 
 notifications:
