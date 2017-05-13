@@ -1,15 +1,22 @@
 sudo: required
 services:
-- docker
+  - docker
 env:
   global:
-  - REPOSITORY: shazi7804/ubuntu-node-yarn
+    - REPOSITORY: shazi7804/ubuntu-node-yarn
   matrix:
-  - NODE_VERSION: '4.8'
-  - NODE_VERSION: '6.10'
-  - NODE_VERSION: '7.10'
+    - NODE_VERSION: '4.8'
+    - NODE_VERSION: '6.10'
+    - NODE_VERSION: '7.10'
 script:
-- docker build -t ${REPOSITORY}:${NODE_VERSION} ${NODE_VERSION}/.
+  - docker build -t ${REPOSITORY}:${NODE_VERSION} ${NODE_VERSION}/.
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push $REPOSITORY;
+    fi
+
 notifications:
   email: false
   slack:
