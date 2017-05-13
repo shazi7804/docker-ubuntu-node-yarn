@@ -10,11 +10,13 @@ env:
     - NODE_VERSION: '7.10'
 script:
   - docker build -t ${REPOSITORY}:${NODE_VERSION} ${NODE_VERSION}/.
+  - docker run -it ${REPOSITORY}:${NODE_VERSION} node -v
 
 after_success:
+  - docker images
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push $REPOSITORY;
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push $REPOSITORY;
     fi
 
 notifications:
