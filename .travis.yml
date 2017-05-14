@@ -6,13 +6,12 @@ env:
     - REPO: shazi7804/ubuntu-node-yarn 
   matrix:
     - NODE_VERSION=4.8  TAG=4.8
-    - NODE_VERSION=6.10
-      - TAG=6.10
-      - TAG=latest
+    - NODE_VERSION=6.10 TAG=6.10
+    - NODE_VERSION=6.10 TAG=latest
     - NODE_VERSION=7.10 TAG=7.10
 
 script:
-  - docker build -t ${REPO}:${NODE_VERSION} ${NODE_VERSION}/.
+  - travis_retry docker build -t ${REPO}:${NODE_VERSION} ${NODE_VERSION}/.
   - docker run -it ${REPO}:${NODE_VERSION} node -v
 
 after_success:
