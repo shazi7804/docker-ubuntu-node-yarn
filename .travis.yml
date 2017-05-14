@@ -8,8 +8,11 @@ env:
     - secure: gpow9mEHW8jtzqMkyfIMq8KEHnNGBjEwKz6MFkbWffG2he5mmUtUrreM7MVsQlguhSrgC/qBl+9OuF3cwAq5A3F97QaAT42gqtdU78O5B21XBDVsltiphX0PonzGVxmKWlwUjKTF6CLaz1bXFfpoRPiNbpxGUwK90AnVFmz43J9x/qN3tK8sfPmnj2xDN+UYXOr5Y2PmoX8jWq54ugkVpAu+B5p1VsYmeDqEJTfrLzh8OGwspWvdapBkKjbMlREaRPGO6YiySzYz336UvC9y3WTqRdgGODnxqcIy0F9ggEtx3frcyjwjuOLLSG55jrurB/VjLA7ikcpMXOTyUZCfoIF1k826m2zJUSAxezcLNV+3dzag6UxcrpdZ1cLcoVnMBZEfJzMSRNayAYGLA2voWJszAV8OA+3Jui504Tw7p4wmEpKzPLEHprQW/FSHarHkoRQv/qgYa43pNxoWkL6NY+FUQoqHh1mWjTntDP8QPHBPhkEGbnHDsLYgnO4d6G23ds2IjUqjJCBggnYLAZ4VmkZKEfidXl2xyTYBQy4oLYf599lim98arO4YQ47rU2A49UIlkbiuS1q0CkcahxG2HcFilznZUy7UZClaqJY6ou7RBkX2CdQAJul2MNKq8J+8zoa1MQ2DjNnF1gKrG8xf323zYZtGGtTDxgU8+KTnZh0=     
   matrix:
     - NODE_VERSION=4.8  TAG=4.8
-    - NODE_VERSION=6.10 TAG=6.10
+    - NODE_VERSION=6.10
+      - TAG=6.10
+      - TAG=latest
     - NODE_VERSION=7.10 TAG=7.10
+
 script:
   - docker build -t ${REPO}:${NODE_VERSION} ${NODE_VERSION}/.
   - docker run -it ${REPO}:${NODE_VERSION} node -v
@@ -17,9 +20,9 @@ script:
 after_success:
   - docker images
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker tag $REPO ${REPO}:${TAG};
+      # docker tag $REPO ${REPO}:${TAG};
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS;
-      docker push $REPO;
+      docker push ${REPO}:${TAG};
     fi
 
 notifications:
