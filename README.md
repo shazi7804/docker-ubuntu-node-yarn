@@ -5,8 +5,9 @@
 
 # Tags/Versions
   - 4.8
-  - 6.10
+  - 6.11
   - 7.10
+  - 8.4
 
 # How to get images
 
