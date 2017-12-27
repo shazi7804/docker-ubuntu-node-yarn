@@ -23,7 +23,7 @@ RUN set -ex \
   done
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.4.0
+ENV NODE_VERSION 5.12.0
 
 RUN apt-get update && apt-get install -y curl xz-utils \
   && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
